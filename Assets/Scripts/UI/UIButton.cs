@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class UIButton : InterfaceElement
 {
+    void Start()
+    {
+        anim = GetComponent<Animation>();
+    }
     public void Pressed()
     {
         if (!anim.isPlaying)
         {
-            AnimationState state = anim[style.buttonStyle.animation];
-            state.speed = style.buttonStyle.speed;
-            anim.Play(style.buttonStyle.animation);
+            AnimationState state = anim[style.animation];
+            state.speed = style.speed;
+            anim.Play(style.animation);
         }
     }
     private void OnEnable()

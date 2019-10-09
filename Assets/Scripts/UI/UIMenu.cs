@@ -5,10 +5,10 @@ using UnityEngine;
 public class UIMenu : InterfaceElement
 {
     public bool isUp;
-    private void Awake()
+    private void Start()
     {
-        if (gameObject.activeSelf) isUp = true;
-        else isUp = false;
+        anim=GetComponent<Animation>();
+        if (!isUp) gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -22,9 +22,9 @@ public class UIMenu : InterfaceElement
             isUp = true;
             if (!anim.isPlaying)
             {
-                AnimationState state = anim[style.menuStyle.animation];
-                state.speed = style.menuStyle.speed;
-                anim.Play(style.menuStyle.animation);
+                AnimationState state = anim[style.animation];
+                state.speed = style.speed;
+                anim.Play(style.animation);
             }
         }
     }
@@ -34,10 +34,10 @@ public class UIMenu : InterfaceElement
         {
             if (!anim.isPlaying)
             {
-                AnimationState state = anim[style.menuStyle.animation];
-                state.speed = -style.menuStyle.speed;
+                AnimationState state = anim[style.animation];
+                state.speed = -style.speed;
                 state.time = state.length;
-                anim.Play(style.menuStyle.animation);
+                anim.Play(style.animation);
             }
             isUp = false;
         }

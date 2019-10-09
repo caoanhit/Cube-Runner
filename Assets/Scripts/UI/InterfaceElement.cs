@@ -2,26 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.IO;
 
 [RequireComponent(typeof(Animation))]
 [RequireComponent(typeof(CanvasGroup))]
 public class InterfaceElement : MonoBehaviour
 {
-    public UIStyleData style;
+    public UIAnimationStyle style;
+
     protected Animation anim;
-    void Start()
-    {
-        anim = GetComponent<Animation>();
-    }
+
 #if UNITY_EDITOR
     private void Reset()
     {
         Animation a = GetComponent<Animation>();
-        Object[] clips = AssetDatabase.LoadAllAssetsAtPath("Assets/Animation/UI/");
-        foreach (Object clip in clips)
+        string[] animFiles = Directory.GetFiles(Application.dataPath+"/Animation/UI", "*.anim", SearchOption.AllDirectories);
+        foreach(string file in animFiles)
         {
-            AnimationClip animation = (AnimationClip)clip;
-            a.AddClip(animation, animation.name);
+            string assetPath = "Assets" + file.Replace(Application.dataPath, "").Replace('\\', '/');
+            AnimationClip clip = (AnimationClip)AssetDatabase.LoadAssetAtPath(assetPath,typeof(AnimationClip));
+            a.AddClip(clip, clip.name);
         }
     }
 #endif

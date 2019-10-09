@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
         else if (Instance != this) Destroy(this.gameObject);
     }
     public GameEvent OnGameStart, OnGameStop, OnPause, OnUnpause;
-    bool gameStarted = false;
-    bool gamePaused = false;
+    bool gameStarted;
+    bool gamePaused;
     void Update()
     {
         if (TouchInput.Instance.tap && !gameStarted)
@@ -38,11 +38,19 @@ public class GameManager : MonoBehaviour
     }
     public void Unpause()
     {
-        gamePaused=false;
-        OnUnpause?.Raise();
+        if(gamePaused){
+            gamePaused=false;
+            OnUnpause?.Raise();
+        }
     }
     public void Restart()
     {
         Transition.Instance.ReloadScene();
+    }
+    private void OnApplicationFocus(bool focusStatus)
+    {
+        if(!focusStatus){
+            Pause();
+        }
     }
 }
