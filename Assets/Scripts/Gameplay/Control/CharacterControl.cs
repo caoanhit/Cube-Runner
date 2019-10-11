@@ -11,12 +11,14 @@ public class CharacterControl : MonoBehaviour
     [Header("Ground Check")]
     public LayerMask mask;
     public float radius;
+    public float speedIncrease;
     public GameEvent OnCharacterDie;
     private Vector3 direction = Vector3.forward;
     Rigidbody rb;
     Animator anim;
     Checkpoint checkpoint = new Checkpoint(Vector3.zero, Vector3.forward);
     bool failed;
+    float additionalSpeed;
     public IntVariable score;
     void Start()
     {
@@ -53,7 +55,10 @@ public class CharacterControl : MonoBehaviour
     public void Move()
     {
         if (!failed)
-            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        {
+            rb.MovePosition(rb.position + direction * (moveSpeed + additionalSpeed) * Time.fixedDeltaTime);
+            additionalSpeed += Time.fixedDeltaTime * speedIncrease;
+        }
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.fixedDeltaTime);
     }
     public void SetDirection(Vector3 dir)
@@ -95,6 +100,7 @@ public class CharacterControl : MonoBehaviour
     }
     public void Respawn()
     {
+        additionalSpeed = 0;
         transform.position = checkpoint.position;
         transform.rotation = Quaternion.LookRotation(checkpoint.direction);
         direction = checkpoint.direction;
