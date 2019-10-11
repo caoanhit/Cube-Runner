@@ -11,6 +11,7 @@ public class ScoreManager : MonoBehaviour
         else if (Instance != this) Destroy(this.gameObject);
         LoadData();
         score.SetValue(0);
+        coin.SetValue(0);
     }
     public IntVariable score;
     public IntVariable coin;
