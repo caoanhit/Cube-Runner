@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3651f67e27787e22a8f61663ba51a2d, type: 3}
   m_Name: PopUp
   m_EditorClassIdentifier: 
-  animation: PopUp
-  speed: 2
+  openAnim:
+    anim: {fileID: 7400000, guid: df45a77114d6dee4da88fd3e29a8cfec, type: 2}
+    speed: 4
+  closeAnim:
+    anim: {fileID: 7400000, guid: df45a77114d6dee4da88fd3e29a8cfec, type: 2}
+    speed: -4

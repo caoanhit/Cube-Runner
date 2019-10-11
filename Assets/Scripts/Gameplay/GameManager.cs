@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
         else if (Instance != this) Destroy(this.gameObject);
     }
     public IntVariable retryTrigger;
-    public GameEvent OnGameStart, OnGameStop, OnPause, OnUnpause, OnRetry;
+    public GameEvent OnPause, OnUnpause, OnRetry;
     bool gameStarted;
     bool gamePaused;
     private void Start()
@@ -22,23 +22,6 @@ public class GameManager : MonoBehaviour
             OnRetry.Raise();
             retryTrigger.SetValue(0);
         }
-    }
-    void Update()
-    {
-        if (TouchInput.Instance.tap && !gameStarted)
-        {
-            GameStart();
-        }
-    }
-    public void GameStart()
-    {
-        gameStarted = true;
-        OnGameStart?.Raise();
-    }
-    public void GameStop()
-    {
-        gameStarted = false;
-        OnGameStop?.Raise();
     }
     public void Pause()
     {

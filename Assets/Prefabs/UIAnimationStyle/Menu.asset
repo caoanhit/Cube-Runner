@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3651f67e27787e22a8f61663ba51a2d, type: 3}
   m_Name: Menu
   m_EditorClassIdentifier: 
-  animation: Ease
-  speed: 3
+  openAnim:
+    anim: {fileID: 7400000, guid: 191d6e1cd680b23a3b21a09803564f21, type: 2}
+    speed: 3
+  closeAnim:
+    anim: {fileID: 7400000, guid: 191d6e1cd680b23a3b21a09803564f21, type: 2}
+    speed: -3
