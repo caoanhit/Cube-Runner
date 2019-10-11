@@ -400,7 +400,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 166323305}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705054881}
+        m_MethodName: PreviousWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &166323305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2142,7 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8146400d7f2620479a6a364569d5d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 3.5
   turnSpeed: 12
   mask:
     serializedVersion: 2
@@ -2162,6 +2173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DebugFps
+      objectReference: {fileID: 0}
+    - target: {fileID: 6155134696711674333, guid: 153fcdc6f3ed93a4180baff6b3635a35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6155134696711674334, guid: 153fcdc6f3ed93a4180baff6b3635a35,
         type: 3}
@@ -2333,8 +2349,8 @@ MonoBehaviour:
   offset: {x: 10, y: 0, z: 10}
   minLength: 1
   maxLength: 6
-  minDistance: 3
-  maxDistance: 6
+  minDistance: 4
+  maxDistance: 8
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2892,7 +2908,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1162394521}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 705054881}
+        m_MethodName: NextWorld
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1162394521
 MonoBehaviour:
   m_ObjectHideFlags: 0
