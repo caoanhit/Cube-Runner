@@ -12,7 +12,9 @@ public class Transition : MonoBehaviour
     public AnimationCurve curve;
     void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+            Instance = this;
+        else if (Instance != this) Destroy(this.gameObject);
     }
     void Start()
     {
@@ -35,7 +37,6 @@ public class Transition : MonoBehaviour
     }
     public void FadeIn()
     {
-        this.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(IFadeIn());
     }
@@ -59,11 +60,11 @@ public class Transition : MonoBehaviour
             yield return null;
         }
         SetTransparency(curve.Evaluate(0));
-        this.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
     }
     IEnumerator IFadeIn()
     {
-
+        image.gameObject.SetActive(true);
         float time = 0;
         while (time < speed)
         {
@@ -93,14 +94,25 @@ public class Transition : MonoBehaviour
     }
     public void LoadScene(string sceneName, LoadSceneMode mode)
     {
-        this.gameObject.SetActive(true);
+        image.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(ILoadScene(sceneName, mode));
     }
     public void ReloadScene()
     {
-        this.gameObject.SetActive(true);
+        image.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(ILoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single));
+    }
+    public void FadeInOut(GameEvent gameEvent)
+    {
+        StopAllCoroutines();
+        StartCoroutine(IFadeInOut(gameEvent));
+    }
+    IEnumerator IFadeInOut(GameEvent gameEvent)
+    {
+        yield return StartCoroutine(IFadeIn());
+        gameEvent.Raise();
+        yield return StartCoroutine(IFadeOut());
     }
 }

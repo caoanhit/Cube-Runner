@@ -11,16 +11,19 @@ public class InterfaceElement : MonoBehaviour
     public UIAnimationStyle style;
 
     protected Animation anim;
+    private void Start()
+    {
+    }
 
 #if UNITY_EDITOR
     private void Reset()
     {
         Animation a = GetComponent<Animation>();
-        string[] animFiles = Directory.GetFiles(Application.dataPath+"/Animation/UI", "*.anim", SearchOption.AllDirectories);
-        foreach(string file in animFiles)
+        string[] animFiles = Directory.GetFiles(Application.dataPath + "/Animation/UI", "*.anim", SearchOption.AllDirectories);
+        foreach (string file in animFiles)
         {
             string assetPath = "Assets" + file.Replace(Application.dataPath, "").Replace('\\', '/');
-            AnimationClip clip = (AnimationClip)AssetDatabase.LoadAssetAtPath(assetPath,typeof(AnimationClip));
+            AnimationClip clip = (AnimationClip)AssetDatabase.LoadAssetAtPath(assetPath, typeof(AnimationClip));
             a.AddClip(clip, clip.name);
         }
     }
