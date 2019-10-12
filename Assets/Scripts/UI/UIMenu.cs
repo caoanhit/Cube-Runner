@@ -14,8 +14,12 @@ public class UIMenu : MonoBehaviour
     public UnityEvent OnClosed;
     bool finished;
     Animation anim;
+    CanvasGroup canvasGroup;
+    RectTransform rectTransform;
     private void Start()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
+        rectTransform = GetComponent<RectTransform>();
         anim = GetComponent<Animation>();
         anim.AddClip(style.openAnim.anim, "Open");
         anim.AddClip(style.closeAnim.anim, "Close");
@@ -25,8 +29,8 @@ public class UIMenu : MonoBehaviour
     {
         if (!isUp && !anim.isPlaying)
         {
-            OnClosed?.Invoke();
             gameObject.SetActive(false);
+            OnClosed?.Invoke();
         }
         if (isUp && !finished && !anim.isPlaying)
         {
@@ -65,9 +69,16 @@ public class UIMenu : MonoBehaviour
             isUp = false;
         }
     }
-    public void CloseImediate()
+    public void CloseImmediate()
     {
         isUp = false;
         gameObject.SetActive(false);
+    }
+    public void OpenImmediate()
+    {
+        gameObject.SetActive(true);
+        canvasGroup.alpha = 1;
+        rectTransform.localScale = Vector3.one;
+        isUp = true;
     }
 }
