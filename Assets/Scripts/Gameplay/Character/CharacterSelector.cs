@@ -17,5 +17,6 @@ public class CharacterSelector : MonoBehaviour
     }
     public void SetPosition(Vector2 pos)
     {
+
     }
 }

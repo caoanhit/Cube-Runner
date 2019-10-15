@@ -5,6 +5,7 @@ using System;
 public enum WorldType { Forest, Savana, Snow, Mountain }
 public class WorldManager : MonoBehaviour
 {
+    public event Action<WorldType, float> OnWorldTransition;
     public static WorldManager instance;
     public float transitionSpeed;
     public WorldType currentType = WorldType.Forest;
@@ -22,14 +23,13 @@ public class WorldManager : MonoBehaviour
             List<GameObject> objList = new List<GameObject>();
             worldElements.Add((WorldType)i, objList);
         }
-        Shader.SetGlobalFloat("_CurrentType", (int)currentType);
-        Shader.SetGlobalFloat("_Transition", 1);
+        OnWorldTransition.Invoke(currentType, 1);
     }
     private void Update()
     {
         if (transition < 1)
         {
-            Shader.SetGlobalFloat("_Transition", transition);
+            OnWorldTransition(currentType, transition);
             transition += Time.deltaTime * transitionSpeed;
         }
         else if (inTransition)
@@ -46,8 +46,7 @@ public class WorldManager : MonoBehaviour
             previousType = currentType;
             currentType = type;
             inTransition = true;
-            Shader.SetGlobalFloat("_CurrentType", (int)currentType);
-            Shader.SetGlobalFloat("_Transition", 0);
+            OnWorldTransition.Invoke(currentType, 0);
             EnableWorld(type);
             transition = 0;
         }
