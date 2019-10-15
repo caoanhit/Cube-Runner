@@ -38,13 +38,18 @@ public class ScrollViewSnapper : MonoBehaviour
     {
         dest = new Vector2(value * itemWidth + origin.x, cont.anchoredPosition.y);
         float dist = Vector2.Distance(cont.anchoredPosition, dest);
-        if (dist > 5)
-            scrollRect.velocity = Vector2.Lerp(scrollRect.velocity, (dest - cont.anchoredPosition) * snapSpeed, lerpSpeed * Time.deltaTime);
-        else
+        if (scrollRect.velocity.magnitude < 400)
         {
-            scrollRect.velocity = Vector2.zero;
-            cont.anchoredPosition = dest;
+            if (dist > 5)
+                scrollRect.velocity = Vector2.Lerp(scrollRect.velocity, (dest - cont.anchoredPosition) * snapSpeed, lerpSpeed * Time.deltaTime);
+            else
+            {
+                scrollRect.velocity = Vector2.zero;
+                cont.anchoredPosition = dest;
+                isDraging = true;
+            }
         }
+
     }
     public void StartDrag()
     {

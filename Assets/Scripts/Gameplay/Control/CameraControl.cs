@@ -13,10 +13,15 @@ public class CameraControl : MonoBehaviour
     [Range(0, 1)]
     public float smoothness;
     public Vector3 charSelectOffset;
+    [Range(0, 1)]
+    public float snapSpeed;
     private Transform target;
     private Vector3 Offset;
+    private Vector3 targetOffset;
     Transform pivot;
     Vector3 vel;
+    Vector3 vel1;
+    Vector3 targetpos;
     void Awake()
     {
         pivot = GetComponentsInChildren<Transform>()[1];
@@ -25,12 +30,18 @@ public class CameraControl : MonoBehaviour
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         transform.position = target.position;
+        targetpos = transform.position;
     }
     private void FixedUpdate()
     {
         if (updateType == UpdateType.FixedUpdate)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, target.position + Offset, ref vel, smoothness, Mathf.Infinity, Time.fixedDeltaTime);
+            targetpos = Vector3.SmoothDamp(targetpos, target.position, ref vel, smoothness, Mathf.Infinity, Time.fixedDeltaTime);
+            transform.position = targetpos + Offset;
+            if (Vector3.Distance(Offset, targetOffset) > 0.01)
+            {
+                Offset = Vector3.SmoothDamp(Offset, targetOffset, ref vel1, snapSpeed, Mathf.Infinity, Time.fixedDeltaTime);
+            }
         }
     }
     // Update is called once per frame
@@ -38,15 +49,20 @@ public class CameraControl : MonoBehaviour
     {
         if (updateType == UpdateType.Update)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, target.position, ref vel, smoothness);
+            targetpos = Vector3.SmoothDamp(targetpos, target.position, ref vel, smoothness);
+            transform.position = targetpos + Offset;
+            if (Vector3.Distance(Offset, targetOffset) > 0.01)
+            {
+                Offset = Vector3.SmoothDamp(Offset, targetOffset, ref vel1, snapSpeed);
+            }
         }
     }
     public void EnterCharSelect()
     {
-        Offset = charSelectOffset;
+        targetOffset = charSelectOffset;
     }
     public void ExitCharSelect()
     {
-        Offset = Vector3.zero;
+        targetOffset = Vector3.zero;
     }
 }

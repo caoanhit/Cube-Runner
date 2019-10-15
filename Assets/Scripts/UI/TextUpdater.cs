@@ -7,6 +7,7 @@ public class TextUpdater : MonoBehaviour
 {
     public IntVariable number;
     Text text;
+    int value;
     void Start()
     {
         text = GetComponent<Text>();
@@ -15,6 +16,10 @@ public class TextUpdater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = number.Value.ToString();
+        if (value != number.Value)
+        {
+            value = number.Value;
+            text.text = value.ToString();
+        }
     }
 }

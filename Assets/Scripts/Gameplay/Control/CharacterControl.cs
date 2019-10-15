@@ -83,7 +83,7 @@ public class CharacterControl : MonoBehaviour
         }
         else if (other.gameObject.tag == "Ground")
         {
-            checkpoint = new Checkpoint(other.transform.position + Vector3.up * 0.5f, CheckDirection(other.transform.position));
+            checkpoint = new Checkpoint(other.transform.position + Vector3.up * 0.5f + other.transform.forward * 0.5f, other.transform.forward);
         }
     }
     private Vector3 CheckDirection(Vector3 position)

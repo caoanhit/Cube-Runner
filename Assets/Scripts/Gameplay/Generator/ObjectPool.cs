@@ -26,7 +26,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
     private Dictionary<string, Queue<GameObject>> objectpool;
-    public void Spawn(string name, Vector3 postion, Quaternion rotation)
+    public GameObject Spawn(string name, Vector3 postion, Quaternion rotation)
     {
         if (objectpool.ContainsKey(name))
         {
@@ -35,7 +35,9 @@ public class ObjectPool : MonoBehaviour
             obj.transform.position = postion;
             obj.transform.rotation = rotation;
             objectpool[name].Enqueue(obj);
+            return obj;
         }
+        return null;
     }
 }
 [System.Serializable]

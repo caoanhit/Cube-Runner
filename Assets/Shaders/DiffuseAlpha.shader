@@ -1,14 +1,16 @@
-﻿Shader "Custom/Diffuse"
+﻿Shader "Custom/Diffuse Alpha"
 {
     Properties
     {
 		_Color("Color",color) = (1,1,1,1)
         _MainTex ("Texture", 2D) = "white" {}
+        _Alpha("Alpha", Range(0,1)) =1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque"
+        Tags { "RenderType"="Transparent"
 		"LightMode" = "ForwardBase" }
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
 		Pass
@@ -43,6 +45,7 @@
 			fixed4 _Color;
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _Alpha;
 
 			v2f vert(appdata v)
 			{
@@ -65,7 +68,9 @@
 				fixed shadow = SHADOW_ATTENUATION(i);
 				fixed3 lighting = i.diff*shadow + i.ambient;
 				col.rgb *= lighting;
+                col.a=_Alpha;
 				UNITY_APPLY_FOG(i.fogCoord, col);
+                
 				return col;
 			}
 			ENDCG

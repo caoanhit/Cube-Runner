@@ -26,7 +26,7 @@ public class Generator : MonoBehaviour
     {
         while (currentPosition.magnitude < (target.position + offset).magnitude)
         {
-            SpawnRandomLine();
+            SpawnRandomLine(minLength, maxLength);
         }
     }
     void ChangeDirection()
@@ -34,18 +34,23 @@ public class Generator : MonoBehaviour
         if (direction == Vector3.forward) direction = Vector3.right;
         else if (direction == Vector3.right) direction = Vector3.forward;
     }
-    void SpawnRandomLine()
+    void SpawnRandomLine(int min, int max)
     {
-        int Length = Random.Range(minLength, maxLength);
-        for (int i = 0; i < Length; i++)
+        int Length = Random.Range(min, max);
+        GameObject obj = ObjectPool.Instance.Spawn("Cube", currentPosition, Quaternion.LookRotation(direction));
+        obj.transform.localScale = new Vector3(1, 1, Length);
+        int pos = 0;
+        while (pos < Length)
         {
-            ObjectPool.Instance.Spawn("Cube", currentPosition, Quaternion.identity);
-            blockCount++;
-            currentPosition += direction;
-            if (blockCount == nextBlockToSpawnCoint) SpawnCoin();
-
+            pos += Random.Range(minDistance, maxDistance);
+            if (pos < Length)
+                SpawnCoin(pos);
         }
+        //blockCount++;
+        currentPosition += direction * (Length - 0.5f);
+        //if (blockCount == nextBlockToSpawnCoint) SpawnCoin();
         ChangeDirection();
+        currentPosition -= direction * 0.5f;
     }
     void SpawnLine(int length)
     {
@@ -55,18 +60,10 @@ public class Generator : MonoBehaviour
             ChangeDirection();
             target.gameObject.GetComponent<CharacterControl>().SetDirection(direction);
         }
-        for (int i = 0; i < length; i++)
-        {
-            ObjectPool.Instance.Spawn("Cube", currentPosition, Quaternion.identity);
-            blockCount++;
-            currentPosition += direction;
-        }
-        ChangeDirection();
+        SpawnRandomLine(length, length + 1);
     }
-    void SpawnCoin()
+    void SpawnCoin(int pos)
     {
-        ObjectPool.Instance.Spawn("Coin", currentPosition + Vector3.up * 0.85f, Quaternion.identity);
-        int distance = Random.Range(minDistance, maxDistance);
-        nextBlockToSpawnCoint += distance;
+        ObjectPool.Instance.Spawn("Coin", currentPosition + Vector3.up * 0.85f + direction * (pos + 0.5f), Quaternion.identity);
     }
 }

@@ -45,27 +45,22 @@ public class UIMenu : MonoBehaviour
             finished = false;
             gameObject.SetActive(true);
             isUp = true;
-            if (!anim.isPlaying)
-            {
-                AnimationState state = anim["Open"];
-                state.speed = style.openAnim.speed;
-                if (style.openAnim.speed < 0) state.time = state.length;
-                else state.time = 0;
-                anim.Play("Open");
-            }
+            AnimationState state = anim["Open"];
+            state.speed = style.openAnim.speed;
+            if (style.openAnim.speed < 0) state.time = state.length;
+            else state.time = 0;
+            anim.Play("Open");
         }
     }
     public void Close()
     {
         if (isUp)
         {
-            if (!anim.isPlaying)
-            {
-                AnimationState state = anim["Close"];
-                state.speed = style.closeAnim.speed;
-                if (style.closeAnim.speed < 0) state.time = state.length;
-                anim.Play("Close");
-            }
+
+            AnimationState state = anim["Close"];
+            state.speed = style.closeAnim.speed;
+            if (style.closeAnim.speed < 0) state.time = state.length;
+            anim.Play("Close");
             isUp = false;
         }
     }
