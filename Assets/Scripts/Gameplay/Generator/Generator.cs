@@ -39,17 +39,15 @@ public class Generator : MonoBehaviour
         int Length = Random.Range(min, max);
         GameObject obj = ObjectPool.Instance.Spawn("Cube", currentPosition, Quaternion.LookRotation(direction));
         obj.transform.localScale = new Vector3(1, 1, Length);
-        int pos = 0;
-        while (pos < Length)
+        blockCount += Length - 1;
+        while (blockCount >= nextBlockToSpawnCoint)
         {
-            pos += Random.Range(minDistance, maxDistance);
-            if (pos < Length)
-                SpawnCoin(pos);
+            SpawnCoin(nextBlockToSpawnCoint - (blockCount - Length + 1));
+            nextBlockToSpawnCoint += Random.Range(minDistance, maxDistance);
         }
-        //blockCount++;
         currentPosition += direction * (Length - 0.5f);
-        //if (blockCount == nextBlockToSpawnCoint) SpawnCoin();
         ChangeDirection();
+
         currentPosition -= direction * 0.5f;
     }
     void SpawnLine(int length)

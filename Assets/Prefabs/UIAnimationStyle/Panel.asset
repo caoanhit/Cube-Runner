@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openAnim:
     anim: {fileID: 7400000, guid: 17d84c93984006b4d90a1fde68e5cf86, type: 2}
-    speed: 3
+    speed: 4
   closeAnim:
     anim: {fileID: 7400000, guid: 17d84c93984006b4d90a1fde68e5cf86, type: 2}
-    speed: -3
+    speed: -4
