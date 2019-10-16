@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using System;
 
 public class CharacterControl : MonoBehaviour
 {
@@ -13,13 +10,15 @@ public class CharacterControl : MonoBehaviour
     public float radius;
     public float speedIncrease;
     public GameEvent OnCharacterDie;
+    public IntVariable score;
+
+    private Checkpoint checkpoint = new Checkpoint(Vector3.zero, Vector3.forward);
     private Vector3 direction = Vector3.forward;
     Rigidbody rb;
     Animator anim;
-    Checkpoint checkpoint = new Checkpoint(Vector3.zero, Vector3.forward);
     bool failed;
     float additionalSpeed;
-    public IntVariable score;
+    private Checker checker;
     void Start()
     {
         score.SetValue(0);
@@ -32,6 +31,10 @@ public class CharacterControl : MonoBehaviour
     {
         if (TouchInput.Instance.tap && Grounded())
         {
+            if (checker != null)
+            {
+                checker.Check(transform.position);
+            }
             ChangeDirection();
         }
         if (Grounded())
@@ -84,6 +87,13 @@ public class CharacterControl : MonoBehaviour
         else if (other.gameObject.tag == "Ground")
         {
             checkpoint = new Checkpoint(other.transform.position + Vector3.up * 0.5f + other.transform.forward * 0.5f, other.transform.forward);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Checker")
+        {
+            checker = other.GetComponent<Checker>();
         }
     }
     private Vector3 CheckDirection(Vector3 position)

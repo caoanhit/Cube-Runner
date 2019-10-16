@@ -26,6 +26,7 @@ public class Generator : MonoBehaviour
     {
         while (currentPosition.magnitude < (target.position + offset).magnitude)
         {
+            SpawnChecker();
             SpawnRandomLine(minLength, maxLength);
         }
     }
@@ -63,5 +64,9 @@ public class Generator : MonoBehaviour
     void SpawnCoin(int pos)
     {
         ObjectPool.Instance.Spawn("Coin", currentPosition + Vector3.up * 0.85f + direction * (pos + 0.5f), Quaternion.identity);
+    }
+    void SpawnChecker()
+    {
+        ObjectPool.Instance.Spawn("Checker", currentPosition, Quaternion.LookRotation(direction));
     }
 }

@@ -23,13 +23,13 @@ public class WorldManager : MonoBehaviour
             List<GameObject> objList = new List<GameObject>();
             worldElements.Add((WorldType)i, objList);
         }
-        OnWorldTransition.Invoke(currentType, 1);
+        OnWorldTransition?.Invoke(currentType, 1);
     }
     private void Update()
     {
         if (transition < 1)
         {
-            OnWorldTransition(currentType, transition);
+            OnWorldTransition?.Invoke(currentType, transition);
             transition += Time.deltaTime * transitionSpeed;
         }
         else if (inTransition)
@@ -46,7 +46,7 @@ public class WorldManager : MonoBehaviour
             previousType = currentType;
             currentType = type;
             inTransition = true;
-            OnWorldTransition.Invoke(currentType, 0);
+            OnWorldTransition?.Invoke(currentType, 0);
             EnableWorld(type);
             transition = 0;
         }
