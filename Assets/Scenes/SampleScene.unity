@@ -8076,17 +8076,17 @@ PrefabInstance:
     - target: {fileID: 6750103424728055886, guid: ad870d174c3708c4ba4bb8922cba9649,
         type: 3}
       propertyPath: curve.m_Curve.Array.data[1].inSlope
-      value: 0.12063105
+      value: 0.47169793
       objectReference: {fileID: 0}
     - target: {fileID: 6750103424728055886, guid: ad870d174c3708c4ba4bb8922cba9649,
         type: 3}
       propertyPath: curve.m_Curve.Array.data[1].outSlope
-      value: 0.12063105
+      value: 0.47169793
       objectReference: {fileID: 0}
     - target: {fileID: 6750103424728055886, guid: ad870d174c3708c4ba4bb8922cba9649,
         type: 3}
       propertyPath: curve.m_Curve.Array.data[1].inWeight
-      value: 0.25416666
+      value: 0.050000012
       objectReference: {fileID: 0}
     - target: {fileID: 6750103424728055886, guid: ad870d174c3708c4ba4bb8922cba9649,
         type: 3}
@@ -16875,7 +16875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updateType: 1
   smoothness: 0.2
-  charSelectOffset: {x: 2.1, y: -4.45, z: 2.1}
+  charSelectOffset: {x: 2.15, y: -4.2, z: 2.15}
   snapSpeed: 0.08
 --- !u!1 &1531290373
 GameObject:

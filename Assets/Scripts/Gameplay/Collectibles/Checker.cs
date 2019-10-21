@@ -18,7 +18,7 @@ public class Checker : MonoBehaviour
         if (Vector3.Distance(pos, transform.position + (transform.forward + Vector3.up) * 0.5f) < precision)
         {
             OnPerfect.Invoke(id);
-            ParticleManager.instance.Play("Checker", gameObject.transform.position + gameObject.transform.forward * 0.5f + Vector3.up * 0.501f);
+            ParticleManager.instance.Play("Checker", gameObject.transform.position + gameObject.transform.forward * 0.5f + Vector3.up * 0.51f);
             gameObject.SetActive(false);
         }
     }

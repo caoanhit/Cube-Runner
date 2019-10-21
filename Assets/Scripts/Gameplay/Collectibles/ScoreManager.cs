@@ -61,7 +61,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void SaveData()
     {
-        ScoreData data = new ScoreData();
+        ScoreData data = SaveLoad.LoadScore();
         if (score > highScore)
         {
             data.highScore = score;
