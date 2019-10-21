@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b6e30fbcf38a0c418c82f4f9a2d2f5b, type: 3}
-  m_Name: MaxPerfect
+  m_Name: Combo
   m_EditorClassIdentifier: 
   DeveloperDescription: 
-  Value: 0
+  Value: 3

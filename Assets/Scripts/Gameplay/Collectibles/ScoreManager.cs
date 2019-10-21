@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
         score.SetValue(0);
         coin.SetValue(0);
         perfect.SetValue(0);
-        maxPerfect.SetValue(0);
+        combo.SetValue(0);
     }
 
     public IntVariable score;
@@ -21,8 +21,8 @@ public class ScoreManager : MonoBehaviour
     public IntVariable perfect;
     public IntVariable highScore;
     public IntVariable ownedCoin;
-    public IntVariable maxPerfect;
-    public IntVariable maxPerfectRecorded;
+    public IntVariable combo;
+    public IntVariable maxCombo;
     private int checkerId;
     private int currentPerfectCount;
     private void OnEnable()
@@ -45,17 +45,17 @@ public class ScoreManager : MonoBehaviour
         if (checkerId == number)
         {
             currentPerfectCount++;
-            if (currentPerfectCount > maxPerfect)
+            if (currentPerfectCount > combo)
             {
-                maxPerfect.SetValue(currentPerfectCount);
+                combo.SetValue(currentPerfectCount);
             }
             checkerId++;
         }
         else
         {
             currentPerfectCount = 1;
-            if (currentPerfectCount > maxPerfect)
-                maxPerfect.SetValue(currentPerfectCount);
+            if (currentPerfectCount > combo)
+                combo.SetValue(currentPerfectCount);
             checkerId = number + 1;
         }
     }
@@ -67,10 +67,10 @@ public class ScoreManager : MonoBehaviour
             data.highScore = score;
             highScore.SetValue(score);
         }
-        if (maxPerfect > maxPerfectRecorded)
+        if (combo > maxCombo)
         {
-            data.maxPerfectRecorded = maxPerfect;
-            maxPerfectRecorded.SetValue(maxPerfect);
+            data.maxCombo = combo;
+            maxCombo.SetValue(combo);
         }
         data.coinCount = ownedCoin;
         SaveLoad.SaveScore(data);
@@ -80,6 +80,6 @@ public class ScoreManager : MonoBehaviour
         ScoreData data = SaveLoad.LoadScore();
         highScore.SetValue(data.highScore);
         ownedCoin.SetValue(data.coinCount);
-        maxPerfectRecorded.SetValue(data.maxPerfectRecorded);
+        maxCombo.SetValue(data.maxCombo);
     }
 }

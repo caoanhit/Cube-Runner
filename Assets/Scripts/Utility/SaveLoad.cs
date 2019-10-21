@@ -50,7 +50,7 @@ public class ScoreData
 {
     public int highScore;
     public int coinCount;
-    public int maxPerfectRecorded;
+    public int maxCombo;
 }
 
 [System.Serializable]

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1100572755036561209}
   - component: {fileID: 3376435378116104966}
   - component: {fileID: 305894247413859191}
-  - component: {fileID: 7941413950408452024}
   m_Layer: 0
   m_Name: Checker
   m_TagString: Checker
@@ -59,25 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd89323358a03ba4ea8e5fa47849ed5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &7941413950408452024
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217435867600314277}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 38e888418db65c942a195753bfa571ad, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2527068950354129898
 GameObject:
   m_ObjectHideFlags: 0
