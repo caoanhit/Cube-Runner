@@ -1,10 +1,9 @@
-﻿Shader "World/Diffuse Color Element"
+﻿Shader "Custom/Diffuse Color Alpha"
 {
     Properties
     {
-		_Type("World Type", float) = 0
 		_Color("Color",color) = (1,1,1,1)
-		
+        _Alpha("Alpha", Range(0,1)) =1
     }
     SubShader
     {
@@ -38,12 +37,10 @@
 				UNITY_FOG_COORDS(1)
 				fixed4 diff : COLOR1;
 				fixed3 ambient : COLOR2;
-
 				float4 pos : SV_POSITION;
 			};
 			fixed4 _Color;
-			float _Type, _CurrentType, _Transition;
-
+            float _Alpha;
 
 			v2f vert(appdata v)
 			{
@@ -65,9 +62,9 @@
 				fixed shadow = SHADOW_ATTENUATION(i);
 				fixed3 lighting = i.diff*shadow + i.ambient;
 				col.rgb *= lighting;
-                col.a=abs(clamp(0,1,abs(_Type-_CurrentType))-_Transition);
-				// apply fog
+                col.a=_Alpha;
 				UNITY_APPLY_FOG(i.fogCoord, col);
+                
 				return col;
 			}
 			ENDCG

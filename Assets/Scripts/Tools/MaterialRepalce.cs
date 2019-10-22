@@ -13,7 +13,7 @@ public class MaterialRepalce : MonoBehaviour
         foreach (Object obj in images)
         {
             Image gameObj = (Image)obj;
-            gameObj.material = material;
+            gameObj.material = null;
         }
     }
 }

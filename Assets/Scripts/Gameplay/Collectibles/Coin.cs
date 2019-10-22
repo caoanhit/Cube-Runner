@@ -10,6 +10,7 @@ public class Coin : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") OnCoinCollect?.Invoke(value);
+        ParticleManager.instance.Play("Coin", transform.position);
         this.gameObject.SetActive(false);
     }
 }
