@@ -12951,6 +12951,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scroll-Snap
       objectReference: {fileID: 0}
+    - target: {fileID: 1469405989811218, guid: a1ec3309957318841a5e68ab2178c627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224199893423832796, guid: a1ec3309957318841a5e68ab2178c627,
         type: 3}
       propertyPath: m_LocalPosition.x
