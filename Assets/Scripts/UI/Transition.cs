@@ -19,7 +19,6 @@ public class Transition : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this);
-        FadeOut();
     }
 
     // Update is called once per frame
@@ -33,7 +32,7 @@ public class Transition : MonoBehaviour
     }
     void OnDisable()
     {
-
+        SceneManager.sceneLoaded -= FadeOut;
     }
     public void FadeIn()
     {
@@ -103,16 +102,5 @@ public class Transition : MonoBehaviour
         image.gameObject.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(ILoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single));
-    }
-    public void FadeInOut(GameEvent gameEvent)
-    {
-        StopAllCoroutines();
-        StartCoroutine(IFadeInOut(gameEvent));
-    }
-    IEnumerator IFadeInOut(GameEvent gameEvent)
-    {
-        yield return StartCoroutine(IFadeIn());
-        gameEvent.Raise();
-        yield return StartCoroutine(IFadeOut());
     }
 }

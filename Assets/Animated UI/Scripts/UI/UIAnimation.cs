@@ -12,6 +12,7 @@ public class UIAnimation : ScriptableObject
     public Sequence Hide(UIData data)
     {
         Sequence sequence = DOTween.Sequence();
+
         sequence.Append(DOTween.To(() => data.rect.localScale, x => data.rect.localScale = x, hideTarget.targetScale, duration).SetEase(hideTarget.scaleEase));
         sequence.Insert(0, DOTween.To(() => data.rect.anchoredPosition, x => data.rect.anchoredPosition = x, hideTarget.targetPos + data.originalPos, duration).SetEase(hideTarget.moveEase));
         sequence.Insert(duration * (1 - 1 / hideTarget.fadeSpeed), DOTween.To(() => data.canvasGroup.alpha, x => data.canvasGroup.alpha = x, hideTarget.targetAlpha, duration / hideTarget.fadeSpeed).SetEase(hideTarget.fadeEase));
@@ -28,6 +29,19 @@ public class UIAnimation : ScriptableObject
 
         return sequence;
     }
+    public void ShowImmediate(UIData data)
+    {
+        data.rect.localScale = showTarget.targetScale;
+        data.canvasGroup.alpha = showTarget.targetAlpha;
+        data.rect.anchoredPosition = data.originalPos + showTarget.targetPos;
+    }
+    public void HideImmediate(UIData data)
+    {
+        data.rect.localScale = hideTarget.targetScale;
+        data.canvasGroup.alpha = hideTarget.targetAlpha;
+        data.rect.anchoredPosition = data.originalPos + hideTarget.targetPos;
+    }
+
 }
 
 [System.Serializable]

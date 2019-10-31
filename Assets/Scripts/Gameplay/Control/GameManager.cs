@@ -12,14 +12,15 @@ public class GameManager : MonoBehaviour
         else if (Instance != this) Destroy(this.gameObject);
     }
     public IntVariable retryTrigger;
-    public GameEvent OnPause, OnUnpause, OnRetry;
+    public GameEvent OnPause, OnUnpause;
+    public UnityEvent OnRetry;
     bool gameStarted;
     bool gamePaused;
     private void Start()
     {
         if (retryTrigger == 1)
         {
-            OnRetry.Raise();
+            OnRetry?.Invoke();
             retryTrigger.SetValue(0);
         }
     }

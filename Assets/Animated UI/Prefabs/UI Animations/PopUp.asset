@@ -20,7 +20,7 @@ MonoBehaviour:
     scaleEase: 27
     targetAlpha: 1
     fadeEase: 1
-    fadeSpeed: 5
+    fadeSpeed: 2
   hideTarget:
     targetPos: {x: 0, y: 0}
     moveEase: 1
@@ -28,4 +28,4 @@ MonoBehaviour:
     scaleEase: 26
     targetAlpha: 0
     fadeEase: 1
-    fadeSpeed: 5
+    fadeSpeed: 2

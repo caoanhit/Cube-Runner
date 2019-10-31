@@ -19,7 +19,7 @@ MonoBehaviour:
     targetScale: {x: 1, y: 1, z: 1}
     scaleEase: 1
     targetAlpha: 1
-    fadeEase: 1
+    fadeEase: 7
     fadeSpeed: 1
   hideTarget:
     targetPos: {x: 0, y: 0}
@@ -27,5 +27,5 @@ MonoBehaviour:
     targetScale: {x: 1, y: 1, z: 1}
     scaleEase: 1
     targetAlpha: 0
-    fadeEase: 1
+    fadeEase: 7
     fadeSpeed: 1

@@ -13,10 +13,10 @@ public class AnimatedButton : AnimatedUI
     public UIAnimation highlightAnim;
     public UIAnimation pressedAnim;
     public UIAnimation onClickAnim;
-    protected override void Start()
+    protected override void Awake()
     {
         GetComponent<Button>().onClick.AddListener(() => OnClick());
-        base.Start();
+        base.Awake();
         EventTrigger eventTrigger = GetComponent<EventTrigger>();
         AddEvent(eventTrigger, EventTriggerType.PointerDown, (data) => { OnPointerDownDelegate((PointerEventData)data); });
         AddEvent(eventTrigger, EventTriggerType.PointerUp, (data) => { OnPointerUpDelegate((PointerEventData)data); });
