@@ -39,22 +39,23 @@
             {
                 float4 pos : SV_POSITION;
                 fixed4 color    : COLOR;
-                float4 screenpos : TEXCOORD0;
+                half screenpos : TEXCOORD0;
             };
             fixed4 _TopColor,_BottomColor;
             v2f vert (appdata v)
             {
                 v2f o;
                 o.pos = UnityObjectToClipPos(v.vertex);
-                o.screenpos= ComputeScreenPos(o.pos);
+                float4 screenpos= ComputeScreenPos(o.pos);
+                o.screenpos=screenpos.y/screenpos.w;
                 o.color= v.color;
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 cordinate=i.screenpos.xy/i.screenpos.w;
-                fixed4 col = lerp(_BottomColor,_TopColor,cordinate.y)*i.color;
+                fixed4 col=i.color;
+                col *= lerp(_BottomColor,_TopColor,i.screenpos);
                 return col;
             }
             ENDCG

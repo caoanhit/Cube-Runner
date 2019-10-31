@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e908e3a20a028e24389cc05b83e1fd25, type: 3}
+  m_Name: Fade
+  m_EditorClassIdentifier: 
+  duration: 0.5
+  showTarget:
+    targetPos: {x: 0, y: 0}
+    moveEase: 1
+    targetScale: {x: 1, y: 1, z: 1}
+    scaleEase: 1
+    targetAlpha: 1
+    fadeEase: 1
+    fadeSpeed: 1
+  hideTarget:
+    targetPos: {x: 0, y: 0}
+    moveEase: 1
+    targetScale: {x: 1, y: 1, z: 1}
+    scaleEase: 1
+    targetAlpha: 0
+    fadeEase: 1
+    fadeSpeed: 1
