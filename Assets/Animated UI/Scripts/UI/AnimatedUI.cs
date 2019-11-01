@@ -37,12 +37,12 @@ public class AnimatedUI : Animated
         sequence.OnComplete(() => gameObject.SetActive(false));
         return sequence;
     }
-    public void HideImmediate()
+    public override void HideImmediate()
     {
         anim.HideImmediate(data);
         gameObject.SetActive(false);
     }
-    public void ShowImmediate()
+    public override void ShowImmediate()
     {
         gameObject.SetActive(true);
         anim.ShowImmediate(data);

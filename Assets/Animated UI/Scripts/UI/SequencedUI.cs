@@ -49,4 +49,26 @@ public class SequencedUI : Animated
         }
         return sequence;
     }
+    public void AShow()
+    {
+        Show();
+    }
+    public void AHide()
+    {
+        Hide();
+    }
+    public override void HideImmediate()
+    {
+        foreach (Animated ui in items)
+        {
+            ui.HideImmediate();
+        }
+    }
+    public override void ShowImmediate()
+    {
+        foreach (Animated ui in items)
+        {
+            ui.ShowImmediate();
+        }
+    }
 }

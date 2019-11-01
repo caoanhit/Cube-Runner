@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e908e3a20a028e24389cc05b83e1fd25, type: 3}
   m_Name: PopUp
   m_EditorClassIdentifier: 
-  duration: 0.5
+  duration: 0.3
   showTarget:
     targetPos: {x: 0, y: 0}
     moveEase: 1
