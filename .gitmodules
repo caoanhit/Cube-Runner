@@ -1,0 +1,3 @@
+[submodule "submodules/Animated-UI"]
+	path = submodules/Animated-UI
+	url = https://github.com/caoanhit/Animated-UI
