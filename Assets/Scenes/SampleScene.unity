@@ -297,11 +297,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 31969476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &31969481
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -713,11 +713,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 243080770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &243080774
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -779,11 +779,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 269249185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: 9c3c23b933dc9234e85d88fac860a60f, type: 2}
+  anim: {fileID: 11400000, guid: f6f766cb3c3852e4eb2c36e428087640, type: 2}
 --- !u!225 &269249188
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1278792917}
+      - m_Target: {fileID: 833729665}
         m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
@@ -1109,8 +1109,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1070971626}
-        m_MethodName: AShow
+      - m_Target: {fileID: 1278792917}
+        m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1120,8 +1120,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 833729665}
-        m_MethodName: AHide
+      - m_Target: {fileID: 1070971626}
+        m_MethodName: AShow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1275,8 +1275,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2117219882}
-        m_MethodName: AHide
+      - m_Target: {fileID: 243080773}
+        m_MethodName: AShow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1286,8 +1286,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 243080773}
-        m_MethodName: AShow
+      - m_Target: {fileID: 2117219882}
+        m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6879,11 +6879,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 826324356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: 9c3c23b933dc9234e85d88fac860a60f, type: 2}
+  anim: {fileID: 11400000, guid: f6f766cb3c3852e4eb2c36e428087640, type: 2}
 --- !u!225 &826324362
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6944,11 +6944,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 833729663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 0
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &833729666
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -7363,11 +7363,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 894402519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &894402522
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13310,11 +13310,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1070971624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &1070971627
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13840,11 +13840,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1176647119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: 9c3c23b933dc9234e85d88fac860a60f, type: 2}
+  anim: {fileID: 11400000, guid: f6f766cb3c3852e4eb2c36e428087640, type: 2}
 --- !u!225 &1176647125
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -13952,11 +13952,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1208520351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &1208520354
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -14276,6 +14276,7 @@ GameObject:
   - component: {fileID: 1278792915}
   - component: {fileID: 1278792916}
   - component: {fileID: 1278792918}
+  - component: {fileID: 1278792919}
   - component: {fileID: 1278792917}
   m_Layer: 5
   m_Name: Game Over
@@ -14320,6 +14321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ovelap: 0
   spacing: 0
+  items: []
 --- !u!114 &1278792917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14329,11 +14331,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1278792914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideOnStart: 0
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  hideOnStart: 1
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &1278792918
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -14346,6 +14348,20 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1278792919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278792914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e858bae3ad2d98a40ab86e8a31099d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ovelap: 0
+  spacing: 0.2
 --- !u!1 &1297073937
 GameObject:
   m_ObjectHideFlags: 0
@@ -14869,11 +14885,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1531290373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 1
-  anim: {fileID: 11400000, guid: 9c3c23b933dc9234e85d88fac860a60f, type: 2}
+  anim: {fileID: 11400000, guid: f6f766cb3c3852e4eb2c36e428087640, type: 2}
 --- !u!225 &1531290379
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -15383,7 +15399,7 @@ MonoBehaviour:
   OnRetry:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2117219882}
+      - m_Target: {fileID: 0}
         m_MethodName: HideImmediate
         m_Mode: 1
         m_Arguments:
@@ -15405,7 +15421,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1070971626}
+      - m_Target: {fileID: 0}
         m_MethodName: ShowImmediate
         m_Mode: 1
         m_Arguments:
@@ -16722,7 +16738,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947285256}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c469beb911e373b4db8b2c96bee891e8, type: 3}
+  m_Script: {fileID: 11500000, guid: e858bae3ad2d98a40ab86e8a31099d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ovelap: 1
@@ -17198,8 +17214,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 31969480}
-        m_MethodName: AHide
+      - m_Target: {fileID: 2117219882}
+        m_MethodName: AShow
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17209,7 +17225,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2117219882}
+      - m_Target: {fileID: 833729665}
         m_MethodName: AShow
         m_Mode: 1
         m_Arguments:
@@ -17231,8 +17247,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 833729665}
-        m_MethodName: AShow
+      - m_Target: {fileID: 31969480}
+        m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17388,6 +17404,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2113360291}
+  - component: {fileID: 2113360293}
   - component: {fileID: 2113360292}
   m_Layer: 5
   m_Name: Info
@@ -17426,11 +17443,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113360290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c469beb911e373b4db8b2c96bee891e8, type: 3}
+  m_Script: {fileID: 11500000, guid: e858bae3ad2d98a40ab86e8a31099d28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ovelap: 1
   spacing: 0.1
+--- !u!225 &2113360293
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113360290}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2115796897
 GameObject:
   m_ObjectHideFlags: 0
@@ -17550,11 +17579,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2117219878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1387c4161e5e824b83c64cdf3c72675, type: 3}
+  m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hideOnStart: 0
-  anim: {fileID: 11400000, guid: f83ff3e81be599b45acb7a3771b1d2ae, type: 2}
+  anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!1 &2132836805
 GameObject:
   m_ObjectHideFlags: 0
@@ -17613,19 +17642,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1278792916}
+      - m_Target: {fileID: 1278792919}
         m_MethodName: HideImmediate
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1070971626}
-        m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17646,19 +17664,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2132836805}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1278792917}
-        m_MethodName: ShowImmediate
+      - m_Target: {fileID: 1070971626}
+        m_MethodName: AHide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17668,7 +17675,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1278792916}
+      - m_Target: {fileID: 1278792919}
         m_MethodName: AShow
         m_Mode: 1
         m_Arguments:
