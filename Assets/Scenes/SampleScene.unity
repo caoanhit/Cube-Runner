@@ -14318,7 +14318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def1d7ac523c2114691c79a37b80e319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideOnStart: 1
+  hideOnStart: 0
   anim: {fileID: 11400000, guid: 5c93cbfce90cbfd4f9d22378a588cff8, type: 2}
 --- !u!225 &1278792918
 CanvasGroup:
@@ -15383,7 +15383,7 @@ MonoBehaviour:
   OnRetry:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2117219882}
         m_MethodName: HideImmediate
         m_Mode: 1
         m_Arguments:
@@ -15405,7 +15405,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 833729665}
+        m_MethodName: HideImmediate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1070971626}
         m_MethodName: ShowImmediate
         m_Mode: 1
         m_Arguments:
