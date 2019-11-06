@@ -20,6 +20,7 @@ public class WorldElement : MonoBehaviour
         {
             material.SetFloat(id, alpha);
         }
+        else material.SetFloat(id, 1 - alpha);
     }
     private void OnEnable()
     {

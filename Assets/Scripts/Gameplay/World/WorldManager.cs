@@ -79,6 +79,7 @@ public class WorldManager : MonoBehaviour
     {
         worldElements[type].Add(obj);
     }
+    [ContextMenu("Next")]
     public void NextWorld()
     {
         int i = (int)currentType + 1;
@@ -88,6 +89,7 @@ public class WorldManager : MonoBehaviour
         }
         else SwitchWorld((WorldType)0);
     }
+    [ContextMenu("Previous")]
     public void PreviousWorld()
     {
         int i = (int)currentType - 1;
