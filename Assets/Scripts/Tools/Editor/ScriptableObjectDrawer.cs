@@ -10,6 +10,7 @@ public class ScriptableObjectDrawer : PropertyDrawer
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
+        EditorGUI.BeginProperty(position, label, property);
         // Draw label
         EditorGUI.PropertyField(position, property, label, true);
 
@@ -33,5 +34,6 @@ public class ScriptableObjectDrawer : PropertyDrawer
             // Set indent back to what it was
             EditorGUI.indentLevel--;
         }
+        EditorGUI.EndProperty();
     }
 }

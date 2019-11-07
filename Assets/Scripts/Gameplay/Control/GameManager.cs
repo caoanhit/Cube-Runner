@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public IntVariable retryTrigger;
     public GameEvent OnPause, OnUnpause;
     public UnityEvent OnRetry;
+    public UnityEvent OnStart;
     bool gameStarted;
     bool gamePaused;
     private void Start()
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
         {
             OnRetry?.Invoke();
             retryTrigger.SetValue(0);
+        }
+        else
+        {
+            OnStart?.Invoke();
         }
     }
     public void Pause()
