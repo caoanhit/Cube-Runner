@@ -67,6 +67,7 @@ public class Generator : MonoBehaviour
     }
     void SpawnChecker()
     {
-        ObjectPool.Instance.Spawn("Checker", currentPosition, Quaternion.LookRotation(direction));
+        GameObject obj = ObjectPool.Instance.Spawn("Checker", currentPosition, Quaternion.LookRotation(direction));
+        obj.GetComponent<Checker>().GetId();
     }
 }

@@ -11,6 +11,7 @@ public class CharacterControl : MonoBehaviour
     public float speedIncrease;
     public GameEvent OnCharacterDie;
     public IntVariable score;
+    public IntVariable additionalScore;
 
     private Checkpoint checkpoint = new Checkpoint(Vector3.zero, Vector3.forward);
     private Vector3 direction = Vector3.forward;
@@ -22,6 +23,7 @@ public class CharacterControl : MonoBehaviour
     void Start()
     {
         score.SetValue(0);
+        additionalScore.SetValue(0);
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         checkpoint = new Checkpoint(Vector3.zero, direction);
@@ -39,7 +41,7 @@ public class CharacterControl : MonoBehaviour
         }
         if (Grounded())
         {
-            score.SetValue((int)transform.position.x / 2 + (int)transform.position.z / 2);
+            score.SetValue((int)transform.position.x / 2 + (int)transform.position.z / 2 + additionalScore);
         }
     }
     private void FixedUpdate()

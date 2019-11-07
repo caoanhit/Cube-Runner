@@ -10,7 +10,6 @@ public class ScoreManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else if (Instance != this) Destroy(this.gameObject);
         LoadData();
-        score.SetValue(0);
         coin.SetValue(0);
         perfect.SetValue(0);
         combo.SetValue(0);
@@ -54,8 +53,7 @@ public class ScoreManager : MonoBehaviour
         else
         {
             currentPerfectCount = 1;
-            if (currentPerfectCount > combo)
-                combo.SetValue(currentPerfectCount);
+            combo.SetValue(currentPerfectCount);
             checkerId = number + 1;
         }
     }
