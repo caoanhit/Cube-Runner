@@ -9,7 +9,7 @@ public class ComboUI : MonoBehaviour
 
     Animator anim;
     RectTransform rect;
-    private void Start()
+    private void Awake()
     {
         anim = GetComponent<Animator>();
         rect = GetComponent<RectTransform>();

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class CharacterSelector : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] characters;
+    public float spacing;
+    private float value;
+
+
     void Start()
     {
 
@@ -15,8 +19,17 @@ public class CharacterSelector : MonoBehaviour
     {
 
     }
-    public void SetPosition(Vector2 pos)
+    public void SetValue(float value)
     {
-
+        this.value = value;
     }
+    public int Selection()
+    {
+        return Mathf.RoundToInt(value);
+    }
+}
+[System.Serializable]
+public class Character
+{
+
 }
