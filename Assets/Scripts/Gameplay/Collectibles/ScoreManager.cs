@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     public IntVariable maxCombo;
     private int checkerId;
     private int currentPerfectCount;
+    private ScoreData data;
     private void OnEnable()
     {
         Checker.OnPerfect += Perfect;
@@ -38,6 +39,11 @@ public class ScoreManager : MonoBehaviour
     {
         ownedCoin.ApplyChange(value);
         coin.ApplyChange(value);
+    }
+    public void RemoveCoin(int amount)
+    {
+        data.coinCount -= amount;
+        SaveLoad.SaveScore(data);
     }
     public void Perfect(int number)
     {
@@ -60,7 +66,6 @@ public class ScoreManager : MonoBehaviour
     }
     public void SaveData()
     {
-        ScoreData data = SaveLoad.LoadScore();
         if (score > highScore)
         {
             data.highScore = score;
@@ -76,7 +81,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void LoadData()
     {
-        ScoreData data = SaveLoad.LoadScore();
+        data = SaveLoad.LoadScore();
         highScore.SetValue(data.highScore);
         ownedCoin.SetValue(data.coinCount);
         maxCombo.SetValue(data.maxCombo);

@@ -1,9 +1,8 @@
-﻿Shader "Custom/Diffuse Alpha"
+Shader "Custom/Diffuse Color Ontop"
 {
     Properties
     {
 		_Color("Color",color) = (1,1,1,1)
-        _MainTex ("Texture", 2D) = "white" {}
         _Alpha("Alpha", Range(0,1)) =1
     }
     SubShader
@@ -11,8 +10,8 @@
         Tags { "RenderType"="Transparent"
 		"LightMode" = "ForwardBase" }
         Blend SrcAlpha OneMinusSrcAlpha
+        ZTest Always
         LOD 100
-
 
 		Pass
 		{
@@ -31,7 +30,6 @@
 			{
 				float4 vertex : POSITION;
 				half3 normal : NORMAL;
-                float2 uv : TEXCOORD0;
 			};
 
 			struct v2f
@@ -40,12 +38,9 @@
 				UNITY_FOG_COORDS(1)
 				fixed4 diff : COLOR1;
 				fixed3 ambient : COLOR2;
-                float2 uv : TEXCOORD2;
 				float4 pos : SV_POSITION;
 			};
 			fixed4 _Color;
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
             float _Alpha;
 
 			v2f vert(appdata v)
@@ -55,7 +50,6 @@
 				half3 worldNormal = UnityObjectToWorldNormal(v.normal);
 				half nl = max(0, dot(worldNormal, _WorldSpaceLightPos0.xyz));
 				o.diff = nl * _LightColor0;
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 				o.ambient = ShadeSH9(half4(worldNormal,1));
 				TRANSFER_SHADOW(o);
 				UNITY_TRANSFER_FOG(o,o.pos);
@@ -65,7 +59,7 @@
 			fixed4 frag(v2f i) : SV_Target
 			{
 				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv)*_Color;
+				fixed4 col = _Color;
 				fixed shadow = SHADOW_ATTENUATION(i);
 				fixed3 lighting = i.diff*shadow + i.ambient;
 				col.rgb *= lighting;

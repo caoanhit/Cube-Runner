@@ -12,16 +12,17 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public float itemHeight = 240;
     public float minVelocity;
     public float snapSpeed;
-    public IntEvent OnValueChange;
-    public FloatEvent OnPosChange;
+    public IntEvent OnSelectedChange;
+    public FloatEvent OnValueChange;
     private ScrollRect scrollRect;
     private List<RectTransform> items;
     private bool dragging;
     private float releaseSpeed, planeDistance;
     private Vector2 previousPosition;
-    private float pos;
+    private float value;
+    private float lastValue;
     private int selectedValue;
-    private int lastValue;
+    private int lastSelectedValue;
     public enum Direction
     {
         Up,
@@ -38,16 +39,18 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     }
     private void Update()
     {
-        selectedValue = GetValue();
-        if (selectedValue != lastValue) OnValueChange.Invoke(selectedValue);
-        lastValue = selectedValue;
+        selectedValue = GetSelectedValue();
+        if (selectedValue != lastSelectedValue) OnSelectedChange.Invoke(selectedValue);
+        lastSelectedValue = selectedValue;
         Vector2 snapPos = Vector2.up * selectedValue * itemHeight;
         if (!dragging && scrollRect.velocity.magnitude < minVelocity)
         {
             scrollRect.content.anchoredPosition = Vector2.MoveTowards(scrollRect.content.anchoredPosition, snapPos, snapSpeed * Time.deltaTime);
         }
-        pos = GetPos();
-        OnPosChange.Invoke(pos);
+        value = GetValue();
+        if (value != lastValue)
+            OnValueChange.Invoke(value);
+        lastValue = value;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -66,15 +69,15 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public void SetDirectValue(int value)
     {
         selectedValue = value;
-        lastValue = value;
-        pos = value;
+        lastSelectedValue = value;
+        this.value = value;
         scrollRect.content.anchoredPosition = Vector2.up * selectedValue * itemHeight;
     }
-    public float GetPos()
+    public float GetValue()
     {
         return scrollRect.content.anchoredPosition.y / itemHeight;
     }
-    public int GetValue()
+    public int GetSelectedValue()
     {
         return Mathf.Clamp(Mathf.RoundToInt(scrollRect.content.anchoredPosition.y / itemHeight), 0, items.Count - 1);
     }
