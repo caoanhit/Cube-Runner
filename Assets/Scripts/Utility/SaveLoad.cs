@@ -44,6 +44,25 @@ public static class SaveLoad
         }
         return new UnlockData();
     }
+    public static References LoadReferences()
+    {
+        if (File.Exists(Application.persistentDataPath + "/references.sav"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream stream = new FileStream(Application.persistentDataPath + "/references.sav", FileMode.Open);
+            References data = bf.Deserialize(stream) as References;
+            stream.Close();
+            return data;
+        }
+        return new References();
+    }
+    public static void SaveReferences(References data)
+    {
+        BinaryFormatter binaryFormatter = new BinaryFormatter();
+        FileStream stream = new FileStream(Application.persistentDataPath + "/references.sav", FileMode.Create);
+        binaryFormatter.Serialize(stream, data);
+        stream.Close();
+    }
 }
 [System.Serializable]
 public class ScoreData
@@ -69,10 +88,24 @@ public class UnlockData
         chars[1] = true;
         items = new bool[100];
     }
-    public void UnlockCharacter(int id){
-        chars[id]= true;
+    public void UnlockCharacter(int id)
+    {
+        chars[id] = true;
     }
-    public void UnlockWorld(int id){
-        worlds[id]= true;
+    public void UnlockWorld(int id)
+    {
+        worlds[id] = true;
     }
+}
+[System.Serializable]
+public class Settings
+{
+    public float volume;
+    public string language;
+}
+[System.Serializable]
+public class References
+{
+    public int character;
+    public int world;
 }

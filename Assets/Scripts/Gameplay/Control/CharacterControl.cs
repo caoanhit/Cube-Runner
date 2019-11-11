@@ -22,11 +22,12 @@ public class CharacterControl : MonoBehaviour
     private Checker checker;
     void Start()
     {
+        Vector3 original = transform.position;
         score.SetValue(0);
         additionalScore.SetValue(0);
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-        checkpoint = new Checkpoint(Vector3.zero, direction);
+        checkpoint = new Checkpoint(original, direction);
     }
     // Update is called once per frame
     void Update()

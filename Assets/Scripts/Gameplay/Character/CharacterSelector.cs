@@ -14,12 +14,14 @@ public class CharacterSelector : MonoBehaviour
     public float transparency = 0.5f;
     private GameObject[] charObjs;
     public CharacterDisplay charDisplay;
+    public ScrollSnap scroll;
 
     private Renderer[] renderers;
     private Material[] materials;
     private float value;
     private int selection;
     private UnlockData data;
+    private References references;
 
     void Awake()
     {
@@ -30,10 +32,11 @@ public class CharacterSelector : MonoBehaviour
         {
             characters[i].unlocked = data.chars[i];
         }
-
         //Load character saved data
-
-        //Assign recent character
+        references = SaveLoad.LoadReferences();
+        this.value = references.character;
+        selection = references.character;
+        ConfirmSelection();
     }
 
 
@@ -69,10 +72,14 @@ public class CharacterSelector : MonoBehaviour
     }
     public void EnterCharacterSelect()
     {
+        scroll.SetValue(references.character);
+        data = SaveLoad.LoadUnlockData();
+        charObjs[selection].gameObject.transform.parent = null;
         StartCoroutine(IShowUnselectedCharacters());
     }
     public void ExitCharacterSelect()
     {
+        ConfirmSelection();
         StartCoroutine(IHideUnselectedCharacters());
     }
     IEnumerator IHideUnselectedCharacters()
@@ -133,12 +140,19 @@ public class CharacterSelector : MonoBehaviour
     }
     public void ConfirmSelection()
     {
-
+        charObjs[selection].gameObject.transform.parent = characterControl.gameObject.transform;
+        references = SaveLoad.LoadReferences();
+        references.character = selection;
+        SaveLoad.SaveReferences(references);
     }
     public void Unlock()
     {
-        data.UnlockCharacter(selection);
-        SaveLoad.SaveUnlockData(data);
+        if (!data.chars[selection])
+        {
+            data.UnlockCharacter(selection);
+            ScoreManager.Instance.RemoveCoin(characters[selection].price);
+            SaveLoad.SaveUnlockData(data);
+        }
     }
 }
 [System.Serializable]
