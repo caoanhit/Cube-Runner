@@ -12,21 +12,21 @@ public class CharacterSelector : MonoBehaviour
     public float spacing;
     public float transitionSpeed;
     public float transparency = 0.5f;
+    public Material normal;
+    public Material select;
     private GameObject[] charObjs;
     public CharacterDisplay charDisplay;
     public ScrollSnap scroll;
 
     private Renderer[] renderers;
-    private Material[] materials;
     private float value;
     private int selection;
     private UnlockData data;
     private References references;
-
+    private int lastSelection;
     void Awake()
     {
         InstantiateCharacters();
-        HideUnselectedCharacters();
         data = SaveLoad.LoadUnlockData();
         for (int i = 0; i < characters.Length; i++)
         {
@@ -36,7 +36,14 @@ public class CharacterSelector : MonoBehaviour
         references = SaveLoad.LoadReferences();
         this.value = references.character;
         selection = references.character;
+        lastSelection = selection;
+        for (int i = 0; i < characters.Length; i++)
+        {
+            charObjs[i].transform.position = cam.up * (-1) * (i - value) * spacing + offset;
+        }
+        HideUnselectedCharacters();
         ConfirmSelection();
+        SetDisplay();
     }
 
 
@@ -44,18 +51,21 @@ public class CharacterSelector : MonoBehaviour
     void Update()
     {
         selection = Selection();
+        if (selection != lastSelection)
+        {
+            SetDisplay();
+        }
+        lastSelection = selection;
     }
     private void InstantiateCharacters()
     {
         charObjs = new GameObject[characters.Length];
-        materials = new Material[characters.Length];
         renderers = new Renderer[characters.Length];
         for (int i = 0; i < characters.Length; i++)
         {
             GameObject obj = Instantiate(characters[i].characterModel);
             obj.transform.position = cam.up * (-1) * i * spacing + offset;
             renderers[i] = obj.GetComponentInChildren<Renderer>();
-            materials[i] = renderers[i].material;
             charObjs[i] = obj;
         }
     }
@@ -64,11 +74,19 @@ public class CharacterSelector : MonoBehaviour
         this.value = value;
         for (int i = 0; i < characters.Length; i++)
         {
-            charObjs[i].transform.position = cam.up * (-1) * (i - value) * spacing + offset;
-            float alpha = 1 - Mathf.Clamp(Mathf.Abs(value - i) - transparency, 0, 1);
-            if (i >= (selection - 1) && i <= (selection + 1)) materials[i].SetFloat("_Alpha", alpha);
+            if (i >= (selection - 1) && i <= (selection + 1))
+            {
+                charObjs[i].transform.position = cam.up * (-1) * (i - value) * spacing + offset;
+                float alpha = 1 - Mathf.Clamp(Mathf.Abs(value - i) - transparency, 0, 1);
+                charObjs[i].transform.localScale = Vector3.one * (1 - Mathf.Clamp(Mathf.Abs(value - i) - 0.5f, 0, 1));
+                renderers[i].material.SetFloat("_Alpha", alpha);
+            }
         }
         charDisplay.SetAlpha(Mathf.Clamp(1 - Mathf.Abs(value - selection) * 3, 0, 1));
+    }
+    public void SetDisplay()
+    {
+        charDisplay.SetData(characters[selection]);
     }
     public void EnterCharacterSelect()
     {
@@ -84,7 +102,7 @@ public class CharacterSelector : MonoBehaviour
     }
     IEnumerator IHideUnselectedCharacters()
     {
-        for (int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < renderers.Length; i++)
         {
             if (i != selection) renderers[i].shadowCastingMode = ShadowCastingMode.Off;
             else renderers[i].shadowCastingMode = ShadowCastingMode.On;
@@ -93,50 +111,70 @@ public class CharacterSelector : MonoBehaviour
         while (alpha > 0)
         {
             alpha -= Time.deltaTime * transitionSpeed;
-            for (int i = 0; i < materials.Length; i++)
+            for (int i = 0; i < renderers.Length; i++)
             {
-                if (i >= (selection - 1) && i <= (selection + 1) && i != selection) materials[i].SetFloat("_Alpha", alpha);
+                if (i >= (selection - 1) && i <= (selection + 1) && i != selection) renderers[i].material.SetFloat("_Alpha", alpha);
             }
             yield return null;
         }
-        for (int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            if (i >= (selection - 1) && i <= (selection + 1) && i != selection) materials[i].SetFloat("_Alpha", 0);
+            if (i >= (selection - 1) && i <= (selection + 1))
+            {
+                renderers[i].material = normal;
+                if (i != selection) renderers[i].material.SetFloat("_Alpha", 0);
+            }
         }
     }
     IEnumerator IShowUnselectedCharacters()
     {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].material = select;
+            if (i != selection) renderers[i].material.SetFloat("_Alpha", 0);
+            else renderers[i].material.SetFloat("_Alpha", 1);
+        }
         float alpha = 0;
         while (alpha < transparency)
         {
             alpha += Time.deltaTime * transitionSpeed;
-            for (int i = 0; i < materials.Length; i++)
+            for (int i = 0; i < renderers.Length; i++)
             {
-                if (i >= (selection - 1) && i <= (selection + 1) && i != selection) materials[i].SetFloat("_Alpha", alpha);
+                if (i >= (selection - 1) && i <= (selection + 1) && i != selection)
+                {
+                    renderers[i].material.SetFloat("_Alpha", alpha);
+                }
             }
             yield return null;
         }
-        for (int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            if (i >= (selection - 1) && i <= (selection + 1) && i != selection) materials[i].SetFloat("_Alpha", 0.5f);
+            if (i >= (selection - 1) && i <= (selection + 1) && i != selection)
+            {
+                renderers[i].material.SetFloat("_Alpha", transparency);
+            }
         }
     }
     public void HideUnselectedCharacters()
     {
-        for (int i = 0; i < materials.Length; i++)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            if (i != selection) renderers[i].shadowCastingMode = ShadowCastingMode.Off;
-        }
-        selection = Selection();
-        for (int i = 0; i < materials.Length; i++)
-        {
-            if (i != selection) materials[i].SetFloat("_Alpha", 0);
-            else materials[i].SetFloat("_Alpha", 1);
+            renderers[i].material = normal;
+            if (i != selection)
+            {
+                renderers[i].shadowCastingMode = ShadowCastingMode.Off;
+                renderers[i].material.SetFloat("_Alpha", 0);
+                charObjs[i].transform.localScale = Vector3.one * 0.5f;
+            }
+            else
+            {
+                renderers[i].material.SetFloat("_Alpha", 1);
+            }
         }
     }
     public int Selection()
     {
-        return Mathf.RoundToInt(value);
+        return Mathf.Clamp(Mathf.RoundToInt(value), 0, characters.Length);
     }
     public void ConfirmSelection()
     {
@@ -147,11 +185,13 @@ public class CharacterSelector : MonoBehaviour
     }
     public void Unlock()
     {
-        if (!data.chars[selection])
+        if (!data.chars[selection] && ScoreManager.Instance.RemoveCoin(characters[selection].price))
         {
             data.UnlockCharacter(selection);
-            ScoreManager.Instance.RemoveCoin(characters[selection].price);
+            characters[selection].unlocked = true;
+            charDisplay.SetData(characters[selection]);
             SaveLoad.SaveUnlockData(data);
+
         }
     }
 }

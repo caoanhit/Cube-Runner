@@ -40,10 +40,16 @@ public class ScoreManager : MonoBehaviour
         ownedCoin.ApplyChange(value);
         coin.ApplyChange(value);
     }
-    public void RemoveCoin(int amount)
+    public bool RemoveCoin(int amount)
     {
-        data.coinCount -= amount;
-        SaveLoad.SaveScore(data);
+        if (ownedCoin > amount)
+        {
+            data.coinCount -= amount;
+            ownedCoin.ApplyChange(-amount);
+            SaveLoad.SaveScore(data);
+            return true;
+        }
+        return false;
     }
     public void Perfect(int number)
     {

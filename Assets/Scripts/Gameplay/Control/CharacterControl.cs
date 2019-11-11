@@ -42,7 +42,7 @@ public class CharacterControl : MonoBehaviour
         }
         if (Grounded())
         {
-            score.SetValue((int)transform.position.x / 2 + (int)transform.position.z / 2 + additionalScore);
+            score.SetValue((int)transform.position.x / 5 + (int)transform.position.z / 5 + additionalScore);
         }
     }
     private void FixedUpdate()
