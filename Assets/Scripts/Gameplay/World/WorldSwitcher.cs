@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WorldSwitcher : MonoBehaviour
 {
+    public WorldManager worldManager;
     private void Update()
     {
         if (TouchInput.Instance.swipeLeft) WorldManager.instance.NextWorld();

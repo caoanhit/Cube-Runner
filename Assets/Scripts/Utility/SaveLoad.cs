@@ -82,10 +82,8 @@ public class UnlockData
     {
         worlds = new bool[100];
         worlds[0] = true;
-        worlds[1] = true;
         chars = new bool[100];
         chars[0] = true;
-        chars[1] = true;
         items = new bool[100];
     }
     public void UnlockCharacter(int id)
