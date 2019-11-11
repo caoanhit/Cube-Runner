@@ -14,6 +14,7 @@ public class CharacterSelector : MonoBehaviour
     public float transparency = 0.5f;
     private GameObject[] charObjs;
     public CharacterDisplay charDisplay;
+
     private Renderer[] renderers;
     private Material[] materials;
     private float value;
@@ -64,7 +65,7 @@ public class CharacterSelector : MonoBehaviour
             float alpha = 1 - Mathf.Clamp(Mathf.Abs(value - i) - transparency, 0, 1);
             if (i >= (selection - 1) && i <= (selection + 1)) materials[i].SetFloat("_Alpha", alpha);
         }
-        charDisplay.SetAlpha(1 - Mathf.Clamp(Mathf.Abs(value - selection) * 2, 0, 1));
+        charDisplay.SetAlpha(Mathf.Clamp(1 - Mathf.Abs(value - selection) * 3, 0, 1));
     }
     public void EnterCharacterSelect()
     {

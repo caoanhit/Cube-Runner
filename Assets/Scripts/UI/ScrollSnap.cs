@@ -14,6 +14,8 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public float snapSpeed;
     public IntEvent OnSelectedChange;
     public FloatEvent OnValueChange;
+    public Button previousButton;
+    public Button nextButton;
     private ScrollRect scrollRect;
     private List<RectTransform> items;
     private bool dragging;
@@ -23,6 +25,8 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     private float lastValue;
     private int selectedValue;
     private int lastSelectedValue;
+    private bool forceMove;
+    private int forceValue;
     public enum Direction
     {
         Up,
@@ -36,21 +40,46 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         scrollRect = GetComponent<ScrollRect>();
         items = scrollRect.content.GetComponentsInChildren<RectTransform>().ToList();
         items.RemoveAt(0);
+        previousButton?.onClick.AddListener(Previous);
+        nextButton?.onClick.AddListener(Next);
+        CheckButtons();
     }
     private void Update()
     {
         selectedValue = GetSelectedValue();
-        if (selectedValue != lastSelectedValue) OnSelectedChange.Invoke(selectedValue);
+        if (selectedValue != lastSelectedValue)
+        {
+            OnSelectedChange.Invoke(selectedValue);
+            CheckButtons();
+        }
         lastSelectedValue = selectedValue;
         Vector2 snapPos = Vector2.up * selectedValue * itemHeight;
         if (!dragging && scrollRect.velocity.magnitude < minVelocity)
         {
-            scrollRect.content.anchoredPosition = Vector2.MoveTowards(scrollRect.content.anchoredPosition, snapPos, snapSpeed * Time.deltaTime);
+            if (forceMove)
+            {
+                scrollRect.content.anchoredPosition = Vector2.MoveTowards(scrollRect.content.anchoredPosition, Vector2.up * forceValue * itemHeight, snapSpeed * 2 * Time.deltaTime);
+                if (selectedValue == forceValue) forceMove = false;
+            }
+            else scrollRect.content.anchoredPosition = Vector2.MoveTowards(scrollRect.content.anchoredPosition, snapPos, snapSpeed * Time.deltaTime);
         }
         value = GetValue();
         if (value != lastValue)
             OnValueChange.Invoke(value);
         lastValue = value;
+    }
+    public void CheckButtons()
+    {
+        if (selectedValue == 0)
+        {
+            previousButton?.gameObject.SetActive(false);
+        }
+        else previousButton?.gameObject.SetActive(true);
+        if (selectedValue == items.Count - 2)
+        {
+            nextButton?.gameObject.SetActive(false);
+        }
+        else nextButton?.gameObject.SetActive(true);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -62,7 +91,7 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         releaseSpeed = scrollRect.velocity.magnitude;
         dragging = false;
     }
-    public void SetValue(int value)
+    public void SetSelectedValue(int value)
     {
         selectedValue = value;
     }
@@ -80,6 +109,24 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     public int GetSelectedValue()
     {
         return Mathf.Clamp(Mathf.RoundToInt(scrollRect.content.anchoredPosition.y / itemHeight), 0, items.Count - 1);
+    }
+    [ContextMenu("Next")]
+    public void Next()
+    {
+        if (selectedValue < items.Count - 1 && forceValue < items.Count - 1)
+        {
+            forceMove = true;
+            forceValue = selectedValue + 1;
+        }
+    }
+    [ContextMenu("Previous")]
+    public void Previous()
+    {
+        if (selectedValue > 0 && forceValue > 0)
+        {
+            forceMove = true;
+            forceValue = selectedValue - 1;
+        }
     }
 }
 [System.Serializable]
