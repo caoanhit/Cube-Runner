@@ -155,6 +155,39 @@ public class CharacterSelector : MonoBehaviour
             }
         }
     }
+    IEnumerator IHideCharacter()
+    {
+        renderers[selection].shadowCastingMode = ShadowCastingMode.Off;
+        float alpha = 1;
+        while (alpha > 0)
+        {
+            alpha -= Time.deltaTime * transitionSpeed;
+            renderers[selection].material.SetFloat("_Alpha", alpha);
+            yield return null;
+        }
+        renderers[selection].material.SetFloat("_Alpha", 0);
+    }
+    IEnumerator IShowCharacter()
+    {
+
+        float alpha = 0;
+        while (alpha < 1)
+        {
+            alpha += Time.deltaTime * transitionSpeed;
+            renderers[selection].material.SetFloat("_Alpha", alpha);
+            yield return null;
+        }
+        renderers[selection].material.SetFloat("_Alpha", 1);
+        renderers[selection].shadowCastingMode = ShadowCastingMode.On;
+    }
+    public void HideCharacter()
+    {
+        StartCoroutine(IHideCharacter());
+    }
+    public void ShowCharacter()
+    {
+        StartCoroutine(IShowCharacter());
+    }
     public void HideUnselectedCharacters()
     {
         for (int i = 0; i < renderers.Length; i++)

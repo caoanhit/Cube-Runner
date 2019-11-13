@@ -13,9 +13,13 @@ public class Generator : MonoBehaviour
     [Header("Coin Generation")]
     public int minDistance;
     public int maxDistance;
+    public FoliageGenerator foliageGenerator;
+    public int foliageDistance;
     Vector3 currentPosition;
     int blockCount;
     int nextBlockToSpawnCoint = 6;
+    int foliagePos;
+    int foliageCount;
     Vector3 direction = Vector3.forward;
     void Start()
     {
@@ -41,6 +45,20 @@ public class Generator : MonoBehaviour
         GameObject obj = ObjectPool.Instance.Spawn("Cube", currentPosition, Quaternion.LookRotation(direction));
         obj.transform.localScale = new Vector3(1, 1, Length);
         blockCount += Length - 1;
+        while (blockCount >= foliagePos && foliageDistance > 0)
+        {
+            if (foliageCount < foliageGenerator.onScreenAmount)
+            {
+                for (int i = 0; i < System.Enum.GetNames(typeof(WorldType)).Length; i++)
+                {
+                    foliageGenerator?.SpawnFoliage(i, currentPosition + direction * (foliagePos - (blockCount - Length + 1)));
+                }
+                foliageCount++;
+            }
+            else
+                foliageGenerator?.SpawnFoliage((int)WorldManager.instance.currentType, currentPosition + direction * (foliagePos - blockCount));
+            foliagePos += foliageDistance;
+        }
         while (blockCount >= nextBlockToSpawnCoint)
         {
             SpawnCoin(nextBlockToSpawnCoint - (blockCount - Length + 1));

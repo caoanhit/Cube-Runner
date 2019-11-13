@@ -18,13 +18,18 @@ public class CameraControl : MonoBehaviour
     private Transform target;
     private Vector3 Offset;
     private Vector3 targetOffset;
+    private Camera cam;
     Transform pivot;
     Vector3 vel;
     Vector3 vel1;
     Vector3 targetpos;
+    float fov;
+    float zoom = 1;
     void Awake()
     {
         pivot = GetComponentsInChildren<Transform>()[1];
+        cam = GetComponentInChildren<Camera>();
+        fov = cam.fieldOfView;
     }
     void Start()
     {
@@ -56,6 +61,22 @@ public class CameraControl : MonoBehaviour
                 Offset = Vector3.SmoothDamp(Offset, targetOffset, ref vel1, snapSpeed);
             }
         }
+    }
+    public void Zoom(float z)
+    {
+        StartCoroutine(IZoom(z));
+    }
+    IEnumerator IZoom(float z)
+    {
+        float velo = 0;
+        while (Mathf.Abs(zoom - z) > 0.1)
+        {
+            zoom = Mathf.SmoothDamp(zoom, z, ref velo, 0.1f);
+            cam.fieldOfView = fov * zoom;
+            yield return null;
+        }
+        zoom = z;
+        cam.fieldOfView = fov * z;
     }
     public void EnterCharSelect()
     {
