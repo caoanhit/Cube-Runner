@@ -51,12 +51,12 @@ public class Generator : MonoBehaviour
             {
                 for (int i = 0; i < System.Enum.GetNames(typeof(WorldType)).Length; i++)
                 {
-                    foliageGenerator?.SpawnFoliage(i, currentPosition + direction * (foliagePos - (blockCount - Length + 1)));
+                    foliageGenerator?.SpawnFoliage(i, currentPosition + direction * (foliagePos - (blockCount - Length + 1.5f)));
                 }
                 foliageCount++;
             }
             else
-                foliageGenerator?.SpawnFoliage((int)WorldManager.instance.currentType, currentPosition + direction * (foliagePos - blockCount));
+                foliageGenerator?.SpawnFoliage((int)WorldManager.instance.currentType, currentPosition + direction * (foliagePos - (blockCount - Length + 1.5f)));
             foliagePos += foliageDistance;
         }
         while (blockCount >= nextBlockToSpawnCoint)
