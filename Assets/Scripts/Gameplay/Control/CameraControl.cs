@@ -65,14 +65,15 @@ public class CameraControl : MonoBehaviour
     }
     public void Zoom(float z)
     {
+        StopAllCoroutines();
         StartCoroutine(IZoom(z));
     }
     IEnumerator IZoom(float z)
     {
         float velo = 0;
-        while (Mathf.Abs(zoom - z) > 0.1)
+        while (Mathf.Abs(zoom - z) > 0.01f)
         {
-            zoom = Mathf.SmoothDamp(zoom, z, ref velo, 0.08f);
+            zoom = Mathf.SmoothDamp(zoom, z, ref velo, 0.1f);
             cam.fieldOfView = fov * zoom;
             yield return null;
         }
