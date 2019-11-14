@@ -44,8 +44,9 @@ public class WorldManager : MonoBehaviour
         if (transition < 1)
         {
             OnWorldTransition?.Invoke(currentType, transition);
-            worldDisplay.SetAlpha(Mathf.Clamp(Mathf.Abs(1 - transition * 2), 0, 1));
-            if (transition > 0.5f && !updated)
+            float alpha = Mathf.Clamp(Mathf.Abs((transition - 0.5f) * 2), 0, 1);
+            worldDisplay.SetAlpha(alpha);
+            if (transition >= 0.5f && !updated)
             {
                 worldDisplay.SetData(currentType.ToString(), prices[(int)currentType], unlocked[(int)currentType]);
                 updated = true;

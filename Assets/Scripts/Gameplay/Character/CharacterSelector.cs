@@ -82,7 +82,7 @@ public class CharacterSelector : MonoBehaviour
                 renderers[i].material.SetFloat("_Alpha", alpha);
             }
         }
-        charDisplay.SetAlpha(Mathf.Clamp(1 - Mathf.Abs(value - selection) * 3, 0, 1));
+        charDisplay.SetAlpha(Mathf.Clamp(1 - Mathf.Abs(value - selection) * 2.5f, 0, 1));
     }
     public void SetDisplay()
     {
@@ -207,7 +207,7 @@ public class CharacterSelector : MonoBehaviour
     }
     public int Selection()
     {
-        return Mathf.Clamp(Mathf.RoundToInt(value), 0, characters.Length);
+        return Mathf.Clamp(Mathf.RoundToInt(value), 0, characters.Length - 1);
     }
     public void ConfirmSelection()
     {

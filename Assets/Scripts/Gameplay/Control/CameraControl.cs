@@ -13,6 +13,7 @@ public class CameraControl : MonoBehaviour
     [Range(0, 1)]
     public float smoothness;
     public Vector3 charSelectOffset;
+    public Vector3 worldSelectOffset;
     [Range(0, 1)]
     public float snapSpeed;
     private Transform target;
@@ -71,7 +72,7 @@ public class CameraControl : MonoBehaviour
         float velo = 0;
         while (Mathf.Abs(zoom - z) > 0.1)
         {
-            zoom = Mathf.SmoothDamp(zoom, z, ref velo, 0.1f);
+            zoom = Mathf.SmoothDamp(zoom, z, ref velo, 0.08f);
             cam.fieldOfView = fov * zoom;
             yield return null;
         }
@@ -85,5 +86,9 @@ public class CameraControl : MonoBehaviour
     public void ExitCharSelect()
     {
         targetOffset = Vector3.zero;
+    }
+    public void EnterWorldSelect()
+    {
+        targetOffset = worldSelectOffset;
     }
 }

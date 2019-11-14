@@ -74,12 +74,12 @@ public class ScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDragHandler
     }
     public void CheckButtons()
     {
-        if (selectedValue == 0)
+        if (selectedValue <= 0)
         {
             previousButton?.gameObject.SetActive(false);
         }
         else previousButton?.gameObject.SetActive(true);
-        if (selectedValue == items.Count - 2)
+        if (selectedValue > items.Count - 3)
         {
             nextButton?.gameObject.SetActive(false);
         }
