@@ -24,7 +24,6 @@ public class WorldElement : MonoBehaviour
     }
     private void OnEnable()
     {
-        Debug.Log("Assign");
         WorldManager.instance.OnWorldTransition += Transition;
     }
     private void OnDisable()

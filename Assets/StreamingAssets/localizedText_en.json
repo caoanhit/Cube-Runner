@@ -1,0 +1,31 @@
+{
+    "item": [{
+            "key": "game_title",
+            "value": "The Title"
+        },
+        {
+            "key": "highscore",
+            "value": "Highscore"
+        },
+        {
+            "key": "select",
+            "value": "Select"
+        },
+        {
+            "key": "unlock",
+            "value": "Unlock"
+        },
+        {
+            "key": "select_character",
+            "value": "Select Character"
+        },
+        {
+            "key": "select_world",
+            "value": "Select World"
+        },
+        {
+            "key": "respawn",
+            "value": "Respawn"
+        }
+    ]
+}
