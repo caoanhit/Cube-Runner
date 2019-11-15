@@ -20,7 +20,6 @@ public class CharacterControl : MonoBehaviour
     bool failed;
     float additionalSpeed;
     private Checker checker;
-    bool respawned;
     void Start()
     {
         Vector3 original = transform.position;
@@ -114,15 +113,11 @@ public class CharacterControl : MonoBehaviour
     }
     public void Respawn()
     {
-        if (!respawned)
-        {
-            respawned = true;
-            additionalSpeed = 0;
-            transform.position = checkpoint.position;
-            transform.rotation = Quaternion.LookRotation(checkpoint.direction);
-            direction = checkpoint.direction;
-            failed = false;
-        }
+        additionalSpeed = 0;
+        transform.position = checkpoint.position;
+        transform.rotation = Quaternion.LookRotation(checkpoint.direction);
+        direction = checkpoint.direction;
+        failed = false;
     }
 }
 [System.Serializable]

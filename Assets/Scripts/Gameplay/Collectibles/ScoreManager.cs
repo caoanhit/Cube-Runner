@@ -51,6 +51,15 @@ public class ScoreManager : MonoBehaviour
         }
         return false;
     }
+    public void RemoveCoinEvent(int amount)
+    {
+        if (ownedCoin > amount)
+        {
+            data.coinCount -= amount;
+            ownedCoin.ApplyChange(-amount);
+            SaveLoad.SaveScore(data);
+        }
+    }
     public void Perfect(int number)
     {
         perfect.ApplyChange(1);
