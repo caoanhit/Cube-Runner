@@ -55,7 +55,7 @@ public class Transition : MonoBehaviour
         while (time > 0)
         {
             SetTransparency(time / speed);
-            time -= Time.deltaTime;
+            time -= Time.unscaledDeltaTime;
             yield return null;
         }
         SetTransparency(curve.Evaluate(0));
@@ -68,7 +68,7 @@ public class Transition : MonoBehaviour
         while (time < speed)
         {
             SetTransparency(time / speed);
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
         SetTransparency(curve.Evaluate(1));
@@ -79,7 +79,7 @@ public class Transition : MonoBehaviour
         while (time < speed)
         {
             SetTransparency(time / speed);
-            time += Time.deltaTime;
+            time += Time.unscaledDeltaTime;
             yield return null;
         }
         SetTransparency(curve.Evaluate(1));
