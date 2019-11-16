@@ -24,7 +24,7 @@ public class CountDown : MonoBehaviour
         {
             time -= Time.deltaTime;
             counter.text = Mathf.Ceil(time).ToString();
-            image.fillAmount = time;
+            image.fillAmount = time / countdownTime;
             if (time <= 0)
             {
                 time = 0;
