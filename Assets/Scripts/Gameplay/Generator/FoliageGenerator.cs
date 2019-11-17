@@ -16,6 +16,12 @@ public class FoliageGenerator : MonoBehaviour
         {
             previousIds[i] = new Queue<int>();
             prefabs[i] = new GameObject[foliageSets[i].prefabs.Length];
+            for (int j = 0; j < foliageSets[i].prefabs.Length; j++)
+            {
+                GameObject obj = Instantiate(foliageSets[i].prefabs[j]);
+                obj.SetActive(false);
+                prefabs[i][j] = obj;
+            }
         }
     }
     public void SpawnFoliage(int type, Vector3 position)
@@ -31,17 +37,8 @@ public class FoliageGenerator : MonoBehaviour
             prefabs[type][obj].SetActive(false);
         }
         previousIds[type].Enqueue(id);
-        if (prefabs[type][id] == null)
-        {
-            GameObject obj = Instantiate(foliageSets[type].prefabs[id]);
-            obj.transform.position = position;
-            prefabs[type][id] = obj;
-        }
-        else
-        {
-            prefabs[type][id].transform.position = position;
-            prefabs[type][id].SetActive(true);
-        }
+        prefabs[type][id].transform.position = position;
+        prefabs[type][id].SetActive(true);
     }
 }
 [System.Serializable]
