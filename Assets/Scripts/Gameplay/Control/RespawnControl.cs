@@ -11,7 +11,7 @@ public class RespawnControl : MonoBehaviour
 
     public void Respawn()
     {
-        if (!respawned && score > 100)
+        if (!respawned && score > 500)
         {
             respawned = true;
             OnRespawnAvailable.Invoke();
